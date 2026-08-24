@@ -70,13 +70,13 @@ const SITE = {
       disponivel: "em breve"
     },
     {
-      nome: "Mulheres",
+      nome: "Mulheres Posicionadas",
       descricao: "",
       instagram: null,
       disponivel: "em breve"
     },
     {
-      nome: "Homens",
+      nome: "Manancial Men",
       descricao: "",
       instagram: null,
       disponivel: "em breve"
@@ -137,6 +137,21 @@ const SITE = {
       texto: "Porque onde estiverem dois ou três reunidos em meu nome, ali estou no meio deles.",
       referencia: "Mateus 18:20",
       foto: "[FOTO-VERSÍCULO-02]"
+    },
+    {
+      texto: "Tudo posso naquele que me fortalece.",
+      referencia: "Filipenses 4:13",
+      foto: "[FOTO-VERSÍCULO-03]"
+    },
+    {
+      texto: "Seja forte e corajoso! Não se apavore, nem desanime, pois o Senhor, o seu Deus, estará com você por onde você andar.",
+      referencia: "Josué 1:9",
+      foto: "[FOTO-VERSÍCULO-04]"
+    },
+    {
+      texto: "O Senhor é o meu pastor, nada me faltará.",
+      referencia: "Salmo 23:1",
+      foto: "[FOTO-VERSÍCULO-05]"
     }
   ],
 
