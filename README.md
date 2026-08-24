@@ -1,14 +1,10 @@
 <div align="center">
 
-  <img src="./garden.jpg" alt="Digital Garden Banner" width="100%" />
+  <img src="readme/garden.jpg" alt="Digital Garden Banner" width="100%" />
 
   # 🌿 Digital Garden
 
   *A personal space for growing ideas, notes, knowledge, and connections.*
-
-  ---
-
-  [📌 About](#-about) • [🌸 Topics](#-topics) 
 
 </div>
 
