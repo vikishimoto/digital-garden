@@ -116,9 +116,33 @@ function renderFooter() {
       </div>
 
       <div class="footer__bottom">
-        <p>© ${new Date().getFullYear()} ${SITE.nome}. Todos os direitos reservados.</p>
+        <p>By <a href="https://github.com/vikishimoto" target="_blank" rel="noopener">Vitória Kishimoto</a> — © ${new Date().getFullYear()} ${SITE.nome}. Todos os direitos reservados.</p>
       </div>
     </footer>
+
+    <style>
+      /* Fundo mais forte e texto branco na faixa inferior do rodapé,
+         para melhorar a legibilidade da linha de créditos/direitos
+         reservados sobre o fundo claro do restante do rodapé. */
+      .footer__bottom {
+        background-color: #2A1D14;
+        color: #FBF6EF;
+        padding: 1rem 1.5rem;
+        text-align: center;
+      }
+      .footer__bottom p {
+        color: #FBF6EF;
+        margin: 0;
+      }
+      .footer__bottom a {
+        color: #E3A85C;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .footer__bottom a:hover {
+        color: #F3C98A;
+      }
+    </style>
   `;
 }
 

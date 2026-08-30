@@ -11,6 +11,232 @@
 <meta property="og:locale" content="pt_BR" />
 <link rel="icon" href="assets/img/favicon.png" />
 <link rel="stylesheet" href="css/style.css" />
+
+<!-- ============================================================
+     ESTILO EXCLUSIVO — CARDS "CONHEÇA NOSSOS PASTORES"
+     Escopo restrito a #lideranca: não afeta nenhuma outra seção
+     do site. Sobrescreve apenas o necessário de style.css.
+     ============================================================ -->
+<style>
+  #lideranca .leaders__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 420px;
+    margin-inline: auto;
+  }
+
+  #lideranca .leader-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(180deg, #FBF6EF 0%, #F5EBE0 100%);
+    border: 1px solid rgba(123, 90, 64, 0.16);
+    border-radius: 22px;
+    padding: 2.1rem 1.6rem 2.3rem;
+    overflow: hidden;
+    box-shadow: 0 24px 48px -32px rgba(44, 33, 24, 0.28);
+    transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s cubic-bezier(0.22,1,0.36,1);
+  }
+  #lideranca .leader-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 56px -30px rgba(44, 33, 24, 0.34);
+  }
+
+  /* detalhe decorativo orgânico, discreto, no canto do card */
+  #lideranca .leader-card::before {
+    content: "";
+    position: absolute;
+    top: -46px;
+    right: -46px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(205, 133, 63, 0.14), transparent 70%);
+    pointer-events: none;
+  }
+  /* pequeno traço orgânico inferior, ecoando o traço-de-asa do site */
+  #lideranca .leader-card::after {
+    content: "";
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    width: 60px;
+    height: 1px;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, transparent, rgba(193, 154, 107, 0.4), transparent);
+    pointer-events: none;
+  }
+
+  /* foto agora NÃO sangra até a borda do card: fica um pouco menor
+     (88% da largura, centralizada) e com respiro visível nas
+     laterais e no topo. Cantos arredondados nos 4 lados (antes só
+     os de baixo, porque a foto ia até a borda do card). A altura
+     (aspect-ratio) ficou um pouco maior que antes (4/3.6) para dar
+     mais espaço vertical e não cortar a cabeça deles. */
+  #lideranca .leader-card__photo-wrap {
+    width: 88%;
+    aspect-ratio: 4 / 3.6;
+    margin: 0 auto 1.6rem;
+    border-radius: 16px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  /* remove os limites herdados de style.css (max-width: 118px /
+     min-width: 96px / aspect-ratio: 4/3 fixo no elemento), que
+     travavam o tamanho da foto mesmo com o wrap já dimensionado */
+  #lideranca .leader-card__photo {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    min-width: 0;
+    aspect-ratio: auto;
+    object-fit: cover;
+    /* ↓ ajuste este valor se ainda cortar a cabeça: 0% = topo total
+       (mostra o máximo do alto da foto); valores negativos (ex.:
+       -10%) "sobem" ainda mais a foto dentro do quadro. */
+    object-position: center -5%;
+    border-radius: 14px;
+    display: block;
+  }
+
+  #lideranca .leader-card__body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* nome — elemento de maior destaque do card */
+  #lideranca .leader-card__name {
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 4vw, 1.3rem);
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: #B87333;
+    line-height: 1.3;
+  }
+
+  #lideranca .leader-card__divider {
+    display: block;
+    width: 46px;
+    height: 2px;
+    margin: 0.9rem 0 1.3rem;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #CD853F, #C19A6B);
+  }
+
+  #lideranca .leader-card__text {
+    align-self: stretch;
+    text-align: left;
+    color: #4A3A2C;
+    font-size: 0.96rem;
+    line-height: 1.75;
+    margin-top: 0.9rem;
+  }
+  #lideranca .leader-card__text:first-of-type { margin-top: 0; }
+
+  #lideranca .leader-card__link {
+    margin-top: 1.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.9em 2.1em;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #FBF6EF;
+    background: #CD853F;
+    border-radius: 999px;
+    box-shadow: 0 12px 24px -12px rgba(205, 133, 63, 0.55);
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  #lideranca .leader-card__link:hover {
+    background: #A8642E;
+    transform: translateY(-2px);
+  }
+
+  /* Desktop — dois cards lado a lado */
+  @media (min-width: 700px) {
+    #lideranca .leaders__grid {
+      grid-template-columns: 1fr 1fr;
+      max-width: 980px;
+      gap: 2.5rem;
+      align-items: stretch;
+    }
+    #lideranca .leader-card { height: 100%; }
+  }
+</style>
+
+<!-- ============================================================
+     ESTILO EXCLUSIVO — CARROSSEL DE FRASES BÍBLICAS
+     Corrige o corte das fotos em telas largas (desktop/notebook).
+     No celular a proporção da tela já é parecida com a das fotos,
+     então o "cover" (preencher e cortar) funciona bem. No desktop
+     a tela é bem mais larga que a foto, e o "cover" cortava boa
+     parte da imagem. A solução: a partir de 900px de largura, a
+     foto passa a aparecer inteira (sem cortes), centralizada, e o
+     espaço vazio nas laterais é preenchido com uma versão borrada
+     da própria foto — mantém o visual "cheio" sem cortar ninguém.
+     ============================================================ -->
+<style>
+  .carousel__slide { background-size: cover; background-position: center; }
+
+  /* camada de fundo borrado, escondida por padrão (só entra no desktop) */
+  .carousel__slide::after {
+    content: "";
+    position: absolute;
+    inset: -40px;
+    z-index: 0;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    filter: blur(0);
+    transform: scale(1);
+    opacity: 0;
+  }
+
+  /* eleva as camadas existentes para abrir espaço para o novo fundo borrado (z-index 0) */
+  .verse-carousel .carousel__slide::before { z-index: 2; }
+  .carousel__slide__photo { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .verse-carousel__content { z-index: 3; }
+
+  @media (min-width: 900px) {
+    .carousel__slide__photo {
+      object-fit: cover;
+      /* ↓ ajuste este valor para subir/descer o "recorte" da foto:
+         0% mostra mais o topo da imagem, 100% mostra mais a base.
+         20% revela bem mais o topo do que o "center" (50%) padrão,
+         que era o que cortava a parte de cima no desktop. */
+      object-position: center 20%;
+    }
+  }
+</style>
+
+<!-- ============================================================
+     ESTILO EXCLUSIVO — FOTOS DO ESTACIONAMENTO
+     As <img> reais não tinham nenhuma regra própria (só o
+     placeholder tinha aspect-ratio definido no style.css), por
+     isso a foto aparecia enorme, na altura natural do arquivo.
+     Aqui fixamos uma proporção 16/9 (mesma do placeholder antigo)
+     e cortamos com object-fit, além de arredondar as bordas.
+     ============================================================ -->
+<style>
+  .visit__parking-photo {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 14px;
+    display: block;
+  }
+</style>
 </head>
 <body data-page="inicio">
 
@@ -26,51 +252,46 @@
       <img src="assets/img/logo-mark-transparent.png" alt="Símbolo da Catedral Manancial da Palavra" class="hero__mark" />
       <div class="hero__cta">
         <a href="#visitar" class="btn btn--primary">Venha nos Visitar</a>
-        <a href="a-igreja.html" class="btn btn--outline" style="border-color: rgba(245,235,224,0.5); color: #FBF6EF;">Conheça a Igreja</a>
+        <a href="a-igreja.html" class="btn btn--outline">Conheça a Igreja</a>
       </div>
     </div>
-  </section>c
+  </section>
 
   <!-- ===================== SEÇÃO 02 — FRASES BÍBLICAS / CARROSSEL ===================== -->
   <section class="verse-section reveal">
     <div class="verse-section__inner">
       <div class="verse-carousel" data-carousel>
-        <div class="carousel__slide is-active">
-          <img src="assets/img/teste.jpg" alt="Momento de adoração na Catedral Manancial da Palavra" class="carousel__slide__photo" />
+        <div class="carousel__slide is-active" style="background-image:url('assets/img/carrossel/carrossel1.PNG')">
+          <img src="assets/img/carrossel/carrossel1.PNG" alt="Momento de adoração na Catedral Manancial da Palavra" class="carousel__slide__photo" />
           <div class="verse-carousel__content">
-            <img src="assets/img/logo-mark-transparent.png" alt="" class="verse-carousel__mark" aria-hidden="true" />
             <blockquote>“Aquele que crê em mim, como diz a Escritura, do seu interior correrão rios de água viva.”</blockquote>
             <cite>João 7:38</cite>
           </div>
         </div>
-        <div class="carousel__slide">
-          <div class="placeholder-img"><span class="placeholder-img__label">[FOTO-VERSÍCULO-02]</span></div>
+        <div class="carousel__slide" style="background-image:url('assets/img/carrossel/carrossel2.PNG')">
+          <img src="assets/img/carrossel/carrossel2.PNG" alt="Momento de adoração na Catedral Manancial da Palavra" class="carousel__slide__photo" />
           <div class="verse-carousel__content">
-            <img src="assets/img/logo-mark-transparent.png" alt="" class="verse-carousel__mark" aria-hidden="true" />
-            <blockquote>“Porque onde estiverem dois ou três reunidos em meu nome, ali estou no meio deles.”</blockquote>
-            <cite>Mateus 18:20</cite>
+            <blockquote>“Não temas, porque eu sou contigo; não te assombres, porque eu sou teu Deus; eu te fortaleço, e te ajudo.”</blockquote>
+            <cite>Isaías 41:10</cite>
           </div>
         </div>
-        <div class="carousel__slide">
-          <div class="placeholder-img"><span class="placeholder-img__label">[FOTO-VERSÍCULO-03]</span></div>
+        <div class="carousel__slide" style="background-image:url('assets/img/carrossel/carrossel3.PNG')">
+          <img src="assets/img/carrossel/carrossel3.PNG" alt="Momento de adoração na Catedral Manancial da Palavra" class="carousel__slide__photo" />
           <div class="verse-carousel__content">
-            <img src="assets/img/logo-mark-transparent.png" alt="" class="verse-carousel__mark" aria-hidden="true" />
             <blockquote>“Tudo posso naquele que me fortalece.”</blockquote>
             <cite>Filipenses 4:13</cite>
           </div>
         </div>
-        <div class="carousel__slide">
-          <div class="placeholder-img"><span class="placeholder-img__label">[FOTO-VERSÍCULO-04]</span></div>
+        <div class="carousel__slide" style="background-image:url('assets/img/carrossel/carrossel4.PNG')">
+         <img src="assets/img/carrossel/carrossel4.PNG" alt="Momento de adoração na Catedral Manancial da Palavra" class="carousel__slide__photo" />
           <div class="verse-carousel__content">
-            <img src="assets/img/logo-mark-transparent.png" alt="" class="verse-carousel__mark" aria-hidden="true" />
             <blockquote>“Seja forte e corajoso! Não se apavore, nem desanime, pois o Senhor, o seu Deus, estará com você por onde você andar.”</blockquote>
             <cite>Josué 1:9</cite>
           </div>
         </div>
-        <div class="carousel__slide">
-          <div class="placeholder-img"><span class="placeholder-img__label">[FOTO-VERSÍCULO-05]</span></div>
+        <div class="carousel__slide" style="background-image:url('assets/img/carrossel/carrossel2.PNG')">
+          <img src="assets/img/carrossel/carrossel5.PNG" alt="Momento de adoração na Catedral Manancial da Palavra" class="carousel__slide__photo" />
           <div class="verse-carousel__content">
-            <img src="assets/img/logo-mark-transparent.png" alt="" class="verse-carousel__mark" aria-hidden="true" />
             <blockquote>“O Senhor é o meu pastor, nada me faltará.”</blockquote>
             <cite>Salmo 23:1</cite>
           </div>
@@ -95,46 +316,42 @@
     </svg>
   </div>
 
-  <!-- ===================== SEÇÃO 03 — LÍDERES ===================== -->
+  <!-- ===================== SEÇÃO — LÍDERES / PASTORES ===================== -->
   <section class="leaders" id="lideranca">
     <div class="container">
-      <div class="leaders__head reveal">
+      <div class="leaders__head">
         <p class="eyebrow">Nossa liderança</p>
-        <h2>Conheça nossos líderes</h2>
+        <h2>Conheça nossos pastores</h2>
         <p class="lede">Uma família a serviço do Reino, conduzindo a Catedral Manancial da Palavra com fé, propósito e dedicação.</p>
       </div>
 
       <div class="leaders__grid">
-        <article class="leader-card reveal">
-          <div class="leader-card__photo placeholder-img"><span class="placeholder-img__label">[FOTO-BISPO]</span></div>
+        <!-- CARD 1 — PASTOR -->
+        <article class="leader-card">
+          <div class="leader-card__photo-wrap">
+            <img src="assets/img/foto-bispo.jpg" alt="Bispo Pablo Romano" class="leader-card__photo" />
+          </div>
           <div class="leader-card__body">
             <h3 class="leader-card__name">Bispo Pablo Romano</h3>
-            <p class="leader-card__role">Bispo Presidente</p>
-            <p class="leader-card__text">Fundador da Catedral Manancial da Palavra, conduz a igreja com um forte propósito profético desde 2019.</p>
-            <p class="leader-card__placeholder">[Espaço para texto — conte um pouco mais sobre a trajetória, o chamado e o coração pastoral do Bispo Pablo.]</p>
-            <blockquote class="leader-card__impact">“[Frase de impacto do Bispo Pablo Romano]”</blockquote>
-            <a href="a-igreja.html#biografia" class="leader-card__link">Conheça a Biografia →</a>
+            <span class="leader-card__divider" aria-hidden="true"></span>
+            <p class="leader-card__text">Um homem comprometido com Deus, com a Palavra e com o cuidado de pessoas. À frente da igreja, exerce seu chamado com dedicação, buscando conduzir a comunidade com fé, propósito e amor.</p>
+            <p class="leader-card__text">Sua liderança tem como fundamento a Palavra de Deus e o desejo de construir uma igreja onde cada pessoa possa encontrar direção, comunhão e um relacionamento verdadeiro com Cristo.</p>
+            <a href="a-igreja.html#biografia" class="leader-card__link">Acesse a Biografia</a>
           </div>
         </article>
 
-        <article class="leader-card reveal">
-          <div class="leader-card__photo placeholder-img"><span class="placeholder-img__label">[FOTO-BISPA]</span></div>
+        <!-- CARD 2 — PASTORA -->
+        <article class="leader-card">
+          <div class="leader-card__photo-wrap">
+            <img src="assets/img/foto-bispa-anna.jpg" alt="Bispa Anna Rayanne" class="leader-card__photo" />
+          </div>
           <div class="leader-card__body">
             <h3 class="leader-card__name">Bispa Anna Rayanne</h3>
-            <p class="leader-card__role">Bispa</p>
-            <p class="leader-card__text">Ao lado do Bispo Pablo Romano há 15 anos, dedica sua vida ao cuidado e à edificação da igreja.</p>
-            <p class="leader-card__placeholder">[Espaço para texto — conte um pouco mais sobre a trajetória, o cuidado pastoral e o coração da Bispa Anna Rayanne.]</p>
-            <blockquote class="leader-card__impact">“[Frase de impacto da Bispa Anna Rayanne]”</blockquote>
+            <span class="leader-card__divider" aria-hidden="true"></span>
+            <p class="leader-card__text">Mulher de fé, dedicação e amor pela obra de Deus. Com seu coração voltado para cuidar de vidas, tem exercido seu chamado com sabedoria, acolhimento e compromisso com a Palavra.</p>
+            <p class="leader-card__text">Sua caminhada é marcada pelo desejo de ver pessoas crescendo na fé, encontrando restauração e vivendo os propósitos de Deus.</p>
           </div>
         </article>
-      </div>
-
-      <div class="leaders__together reveal">
-        <div class="placeholder-img"><span class="placeholder-img__label">[FOTO-BISPO-BISPA]</span></div>
-      </div>
-
-      <div class="leaders__cta reveal">
-        <a href="a-igreja.html#biografia" class="btn btn--outline">Conheça Nossa História</a>
       </div>
     </div>
   </section>
@@ -149,30 +366,50 @@
       </div>
 
       <div class="services__grid reveal">
-        <div class="service-card">
+        <div class="service-card service-card--seg">
+          <div class="service-card__media">
+            <img src="assets/img/cultos/culto1.png" alt="" />
+          </div>
           <span class="service-card__index" aria-hidden="true">01</span>
-          <p class="service-card__day">Segunda-feira</p>
-          <p class="service-card__name">Oração e Avivamento</p>
-          <p class="service-card__time">19h30</p>
-          <p class="service-card__note">Consulte nossas redes sociais para confirmar a programação desta semana.</p>
+          <div class="service-card__content">
+            <p class="service-card__day">Segunda-feira</p>
+            <p class="service-card__name">Oração e Avivamento</p>
+            <p class="service-card__time">19h30</p>
+            <p class="service-card__note">Consulte nossas redes sociais para confirmar a programação desta semana.</p>
+          </div>
         </div>
-        <div class="service-card">
+        <div class="service-card service-card--qua">
+          <div class="service-card__media">
+            <img src="assets/img/cultos/culto2.PNG" alt="" />
+          </div>
           <span class="service-card__index" aria-hidden="true">02</span>
-          <p class="service-card__day">Quarta-feira</p>
-          <p class="service-card__name">Quarta da Resposta</p>
-          <p class="service-card__time">19h30</p>
+          <div class="service-card__content">
+            <p class="service-card__day">Quarta-feira</p>
+            <p class="service-card__name">Quarta da Resposta</p>
+            <p class="service-card__time">19h30</p>
+          </div>
         </div>
-        <div class="service-card">
+        <div class="service-card service-card--sex">
+          <div class="service-card__media">
+            <img src="assets/img/cultos/culto3.PNG" alt="" />
+          </div>
           <span class="service-card__index" aria-hidden="true">03</span>
-          <p class="service-card__day">Sexta-feira</p>
-          <p class="service-card__name">Sexta-feira dos Milagres</p>
-          <p class="service-card__time">19h30</p>
+          <div class="service-card__content">
+            <p class="service-card__day">Sexta-feira</p>
+            <p class="service-card__name">Sexta-feira dos Milagres</p>
+            <p class="service-card__time">19h30</p>
+          </div>
         </div>
-        <div class="service-card">
+        <div class="service-card service-card--dom">
+          <div class="service-card__media">
+            <img src="assets/img/cultos/culto4.PNG" alt="" />
+          </div>
           <span class="service-card__index" aria-hidden="true">04</span>
-          <p class="service-card__day">Domingo</p>
-          <p class="service-card__name">Culto de Celebração</p>
-          <p class="service-card__time">9h30 <span style="font-size:1rem; color: var(--bronze);">e</span> 18h30</p>
+          <div class="service-card__content">
+            <p class="service-card__day">Domingo</p>
+            <p class="service-card__name">Culto da Família</p>
+            <p class="service-card__time">9h30 <span style="font-size:1rem; opacity:.8;">e</span> 18h30</p>
+          </div>
         </div>
       </div>
     </div>
@@ -188,22 +425,26 @@
       </div>
 
       <div class="ministries__grid reveal">
-        <article class="ministry-card">
+        <article class="ministry-card ministry-card--jovens">
+          <span class="ministry-card__icon"><img src="assets/img/logos/jovens.png" alt="" /></span>
           <h3 class="ministry-card__name">Jovens Manancial</h3>
           <p class="ministry-card__desc">Uma geração levantada para viver e anunciar a Palavra.</p>
           <a href="https://www.instagram.com/jovensdamanancial_/" target="_blank" rel="noopener" class="ministry-card__link">Seguir no Instagram →</a>
         </article>
-        <article class="ministry-card">
+        <article class="ministry-card ministry-card--kids">
+          <span class="ministry-card__icon"><img src="assets/img/logos/kids.png" alt="" /></span>
           <h3 class="ministry-card__name">Kids Manancial</h3>
           <p class="ministry-card__desc">Cuidando e ensinando a Palavra às novas gerações.</p>
           <span class="ministry-card__status">Em breve</span>
         </article>
-        <article class="ministry-card">
+        <article class="ministry-card ministry-card--mulheres">
+          <span class="ministry-card__icon"><img src="assets/img/logos/mulheres.png" alt="" /></span>
           <h3 class="ministry-card__name">Mulheres Posicionadas</h3>
           <p class="ministry-card__desc">Um espaço de fortalecimento e comunhão.</p>
           <span class="ministry-card__status">Em breve</span>
         </article>
-        <article class="ministry-card">
+        <article class="ministry-card ministry-card--homens">
+          <span class="ministry-card__icon"><img src="assets/img/logos/homens-leao.png" alt="" /></span>
           <h3 class="ministry-card__name">Manancial Men</h3>
           <p class="ministry-card__desc">Um chamado à liderança e ao propósito.</p>
           <span class="ministry-card__status">Em breve</span>
@@ -222,21 +463,33 @@
 
       <div class="social__grid reveal">
         <a class="social-card" href="https://www.instagram.com/manancialdapalavra/" target="_blank" rel="noopener">
+          <span class="social-card__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
+          </span>
           <p class="social-card__label">Instagram</p>
           <p class="social-card__handle">@manancialdapalavra</p>
           <span class="social-card__cta">Acompanhe no Instagram</span>
         </a>
         <a class="social-card" href="https://www.youtube.com/@Catedral_ManancialdaPalavra" target="_blank" rel="noopener">
+          <span class="social-card__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2.5" y="5.5" width="19" height="13" rx="4" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 9.3l5 2.7-5 2.7V9.3z" fill="currentColor"/></svg>
+          </span>
           <p class="social-card__label">YouTube</p>
           <p class="social-card__handle">Catedral Manancial da Palavra</p>
           <span class="social-card__cta">Assista no YouTube</span>
         </a>
         <a class="social-card" href="https://www.instagram.com/jovensdamanancial_/" target="_blank" rel="noopener">
+          <span class="social-card__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
+          </span>
           <p class="social-card__label">Jovens Manancial</p>
           <p class="social-card__handle">@jovensdamanancial_</p>
           <span class="social-card__cta">Acompanhe no Instagram</span>
         </a>
         <div class="social-card">
+          <span class="social-card__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
+          </span>
           <p class="social-card__label">Kids Manancial</p>
           <p class="social-card__handle">Link será inserido posteriormente.</p>
           <span class="social-card__cta">Em breve</span>
@@ -275,8 +528,8 @@
           <p class="lede" style="margin: 0; font-size: 0.95rem;">Chegue com tranquilidade e saiba onde estacionar ao visitar nossa igreja.</p>
         </div>
         <div class="visit__parking-grid">
-          <div class="placeholder-img"><span class="placeholder-img__label">[FOTO-ESTACIONAMENTO-01]</span></div>
-          <div class="placeholder-img"><span class="placeholder-img__label">[FOTO-ESTACIONAMENTO-02]</span></div>
+          <img src="assets/img/estacionamento/estacionamento1.png" alt="Estacionamento da Catedral Manancial da Palavra" class="visit__parking-photo" />
+          <img src="assets/img/estacionamento/estacionamento2.png" alt="Estacionamento da Catedral Manancial da Palavra" class="visit__parking-photo" />
         </div>
       </div>
     </div>
