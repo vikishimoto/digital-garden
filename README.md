@@ -1,13 +1,9 @@
 
 <div align="center">
 
-<img src="readme/digitalgarden.jpg" width="100%" alt="Digital Garden">
+![Digital Garden](./readme/digital-garden-card.svg)
 
 <br>
-
-# Digital Garden 🌿
-
-*A collection of thoughts, code & everything in between.*
 
 </div>
 
