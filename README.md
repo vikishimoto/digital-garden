@@ -1,26 +1,35 @@
+
 <div align="center">
 
-  <img src="readme/garden.jpg" alt="Digital Garden Banner" width="100%" />
+<img src="readme/digitalgarden.jpg" width="100%" alt="Digital Garden">
 
-  # 🌿 Digital Garden
+<br>
 
-  *A personal space for growing ideas, notes, knowledge, and connections.*
+# Digital Garden 🌿
+
+*A collection of thoughts, code & everything in between.*
 
 </div>
 
-<br />
+---
 
-## 📖 About
+### 01 / About
 
-Welcome to my private **Digital Garden**. Unlike a traditional blog or static notebook, this space is a living ecosystem of continuous learning. It is a place where ideas are planted, nurtured, and cultivated over time.
+A personal space to document my journey through
+technology, programming and continuous learning.
+
+Here, I collect everything I'm learning, experimenting
+with and creating along the way.
+
+### 02 / Explore the garden
+
+- 📖 **Notes & Learning** — Study notes and discoveries.
+- 💻 **Code & Experiments** — Programming practice.
+- ✳️ **Ideas & Inspiration** — Thoughts and future plans.
+- 🌱 **Projects & Progress** — Things I'm building.
 
 ---
 
-## 🌸 Topics in Bloom
+<div align="center">
 
-- 🧠 **Study & Research Notes:** Book summaries, articles, and course takeaways.
-- 💻 **Development & Code:** Code snippets, software architecture, and practical solutions.
-- 💡 **Ideas & Brainstorms:** Early-stage concepts waiting to mature.
-- 📂 **Projects:** Drafts and documentation for personal projects.
-
----
+</div>
